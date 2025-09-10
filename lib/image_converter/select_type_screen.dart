@@ -11,7 +11,7 @@ class SelectTypeScreen extends StatefulWidget {
 
 class _SelectTypeScreenState extends State<SelectTypeScreen> {
 
-  String selectedFormat = "Select a format";
+  String selectedFormat = "";
   final List<String> formats = ["Png", "jpg", "webp", "gif", "ICO"];
 
   @override
@@ -124,53 +124,44 @@ class _SelectTypeScreenState extends State<SelectTypeScreen> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15)
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton2<String>(
-                        value: formats.contains(selectedFormat) ? selectedFormat : null,
-                        items: formats.map((format) {
-                          return DropdownMenuItem<String>(
-                            value: format,
-                            child: Text(
-                              format,
-                              style: const TextStyle(color: Colors.grey,fontWeight: FontWeight.w400,fontSize: 13),
-                            ),
-                          );
-                        }).toList(),
-                        onChanged: (value) {
-                          if (value != null) {
-                            setState(() {
-                              selectedFormat = value;
-                            });
-                          }
-                        },
-                        buttonStyleData: ButtonStyleData(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          height: 50,
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.white,
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton2<String>(
+                      value: formats.contains(selectedFormat) ? selectedFormat : null,
+                      hint: Text('Select a format',style: TextStyle(color: Colors.grey,fontSize: 13,fontWeight: FontWeight.w400),),
+                      items: formats.map((format) {
+                        return DropdownMenuItem<String>(
+                          value: format,
+                          child: Text(
+                            format,
+                            style: const TextStyle(color: Colors.grey,fontWeight: FontWeight.w400,fontSize: 13),
                           ),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        if (value != null) {
+                          setState(() {
+                            selectedFormat = value;
+                          });
+                        }
+                      },
+                      buttonStyleData: ButtonStyleData(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        width: MediaQuery.of(context).size.width * 0.8,
+                      ),
+                      dropdownStyleData: DropdownStyleData(
+                        maxHeight: MediaQuery.of(context).size.height * 0.3,
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        elevation: 0,
+                        direction: DropdownDirection.left,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey.shade100),
+                          color: Colors.white,
                         ),
 
-                        // Dropdown menu style
-                        dropdownStyleData: DropdownStyleData(
-                          maxHeight: MediaQuery.of(context).size.height * 0.3,
-                          width: MediaQuery.of(context).size.width * 0.9,
-                          direction: DropdownDirection.left,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.white,
-                          ),
-
-                        ),
-
-                        // Menu item style
-                        menuItemStyleData: const MenuItemStyleData(
-                          height: 40,
-                        ),
+                      ),
+                      menuItemStyleData: const MenuItemStyleData(
+                        height: 40,
                       ),
                     ),
                   ),
