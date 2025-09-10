@@ -68,8 +68,7 @@ class _EditQrScreenState extends State<EditQrScreen> {
                             return Dialog(
                               backgroundColor: Colors.white,
                               child: SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.3,
+                                height: MediaQuery.of(context).size.height * 0.3,
                                 width: MediaQuery.of(context).size.width,
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
