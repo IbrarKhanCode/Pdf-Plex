@@ -280,7 +280,7 @@ class _EditQrScreenState extends State<EditQrScreen> {
                   ),
           ),
         ],
-      )),
+      ))
     );
   }
 }

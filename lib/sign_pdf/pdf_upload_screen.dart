@@ -3,6 +3,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_plex/core/utils/colors.dart';
+import 'package:pdf_plex/sign_pdf/signature_screen.dart';
 
 class PdfUploadScreen extends StatefulWidget {
   const PdfUploadScreen({super.key});
@@ -21,15 +22,15 @@ class _PdfUploadScreenState extends State<PdfUploadScreen> {
       allowedExtensions: ['pdf'],
     );
 
-    // if (result != null) {
-    //   String pdfPath = result.files.single.path!;
-    //   Navigator.push(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (_) => SelectTypeScreen(filePath: pdfPath),
-    //     ),
-    //   );
-    // }
+    if (result != null) {
+      String pdfPath = result.files.single.path!;
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => SignatureScreen(filePath: pdfPath),
+        ),
+      );
+    }
   }
 
   @override
