@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pdf_plex/core/utils/colors.dart';
 import 'package:pdf_plex/share_note/share_note_screen.dart';
+import 'package:pdf_plex/sign_pdf/pdf_upload_screen.dart';
 
 class FileConvertedScreen extends StatefulWidget {
   const FileConvertedScreen({super.key});
@@ -86,7 +87,9 @@ class _FileConvertedScreenState extends State<FileConvertedScreen> {
                         height: 10,
                       ),
                       GestureDetector(
-                        onTap: (){},
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>PdfUploadScreen()));
+                        },
                         child: Container(
                           height: MediaQuery.of(context).size.height * 0.06,
                           width: MediaQuery.sizeOf(context).width,
