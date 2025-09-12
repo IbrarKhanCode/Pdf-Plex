@@ -127,322 +127,325 @@ class _ShareNoteScreenState extends State<ShareNoteScreen> {
                                       child: Padding(
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 20),
-                                        child: Column(
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Expanded(
-                                                    child: Align(
-                                                  alignment: Alignment.center,
-                                                  child: Text(
-                                                    'Share Note',
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize: 20),
-                                                  ),
-                                                )),
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Container(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            0.07,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.07,
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          Colors.grey.shade200,
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                    child: Center(
-                                                        child: Icon(
-                                                      Icons.close,
-                                                      size: 20,
-                                                      color: Colors.black,
-                                                    )),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  'Custom Link (optional):',
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      color: Color(0xff666666)),
-                                                )
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            TextField(
-                                              decoration: InputDecoration(
-                                                  fillColor: Colors.white,
-                                                  hintText:
-                                                      'https://pdfplex.com/note/view',
-                                                  hintStyle: TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 14),
-                                                  filled: true,
-                                                  enabledBorder:
-                                                      OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(8),
-                                                          borderSide: BorderSide(
-                                                              color: Colors.grey
-                                                                  .shade100)),
-                                                  focusedBorder:
-                                                      OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(8),
-                                                          borderSide:
-                                                              BorderSide(
-                                                                  color: Colors
-                                                                      .red))),
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            TextField(
-                                              decoration: InputDecoration(
-                                                  fillColor: Colors.white,
-                                                  hintText:
-                                                      'Add Your Custom Link',
-                                                  hintStyle: TextStyle(
-                                                      color: Colors.grey,
-                                                      fontSize: 14),
-                                                  filled: true,
-                                                  enabledBorder:
-                                                      OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(8),
-                                                          borderSide: BorderSide(
-                                                              color: Colors.grey
-                                                                  .shade100)),
-                                                  focusedBorder:
-                                                      OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(8),
-                                                          borderSide:
-                                                              BorderSide(
-                                                                  color: Colors
-                                                                      .red))),
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  'Expire Date:',
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      color: Color(0xff666666)),
-                                                )
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            Container(
-                                              height: MediaQuery.of(context)
-                                                  .size
-                                                  .height * 0.05,
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    color:
-                                                        Colors.grey.shade100),
-                                                color: Colors.white,
-                                                borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(10),
-                                                  topRight: Radius.circular(10),
-                                                ),
-                                              ),
-                                              child:
-                                                  DropdownButtonHideUnderline(
-                                                child: DropdownButton2<String>(
-                                                  value: formats.contains(
-                                                          selectedFormat)
-                                                      ? selectedFormat
-                                                      : null,
-                                                  hint: Text(
-                                                    '1 month',
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                  ),
-                                                  items: formats.map((format) {
-                                                    return DropdownMenuItem<
-                                                        String>(
-                                                      value: format,
-                                                      child: Text(
-                                                        format,
-                                                        style: const TextStyle(
-                                                            color: Colors.grey,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize: 13),
-                                                      ),
-                                                    );
-                                                  }).toList(),
-                                                  onChanged: (value) {
-                                                    if (value != null) {
-                                                      setState(() {
-                                                        selectedFormat = value;
-                                                      });
-                                                    }
-                                                  },
-                                                  buttonStyleData:
-                                                      ButtonStyleData(
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                        horizontal: 20),
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.8,
-                                                  ),
-                                                  dropdownStyleData:
-                                                      DropdownStyleData(
-                                                    maxHeight:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            0.4,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.7,
-                                                    elevation: 0,
-                                                    direction:
-                                                        DropdownDirection.left,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.only(
-                                                        bottomLeft:
-                                                            Radius.circular(10),
-                                                        bottomRight:
-                                                            Radius.circular(10),
-                                                      ),
-                                                      border: Border.all(
-                                                          color: Colors
-                                                              .grey.shade100),
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                  menuItemStyleData:
-                                                      const MenuItemStyleData(
-                                                    height: 40,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  'Password:',
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      color: Color(0xff666666)),
-                                                )
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            TextField(
-                                              decoration: InputDecoration(
-                                                  fillColor: Colors.white,
-                                                  hintText:
-                                                  'Enter Password',
-                                                  hintStyle: TextStyle(
-                                                      color: Colors.grey,
-                                                      fontSize: 14),
-                                                  filled: true,
-                                                  enabledBorder:
-                                                  OutlineInputBorder(
-                                                      borderRadius:
-                                                      BorderRadius
-                                                          .circular(8),
-                                                      borderSide: BorderSide(
-                                                          color: Colors.grey
-                                                              .shade100)),
-                                                  focusedBorder:
-                                                  OutlineInputBorder(
-                                                      borderRadius:
-                                                      BorderRadius
-                                                          .circular(8),
-                                                      borderSide:
-                                                      BorderSide(
-                                                          color: Colors
-                                                              .red))),
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            Row(
-                                              children: [
-                                                Checkbox(
-                                                  side: BorderSide(color: Colors.grey),
-                                                  checkColor: Colors.white,
-                                                    activeColor: AppColors.primaryColor,
-                                                    value: isChecked,
-                                                    onChanged: (value){
-                                                      setState(() {
-                                                        isChecked = value!;
-                                                      });
-                                                    }
-                                                    ),
-                                                Text('Public (listed in search)',style: TextStyle(color: Colors.grey,fontSize: 10),),
-                                              ],
-                                            ),
-                                            SizedBox(height: 10,),
-                                            Container(
-                                              height: MediaQuery.sizeOf(context).height * 0.05,
-                                              width: MediaQuery.sizeOf(context).width,
-                                              decoration: BoxDecoration(
-                                                  color: AppColors.primaryColor,
-                                                  borderRadius: BorderRadius.circular(10)),
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                        child: SingleChildScrollView(
+                                          child: Column(
+                                            children: [
+                                              Row(
                                                 children: [
-                                                  SizedBox(width: 10,),
-                                                  Text(
-                                                    'SHARE',
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight: FontWeight.w500,
-                                                        fontSize: 16),
-                                                  ),
+                                                  Expanded(
+                                                      child: Align(
+                                                    alignment: Alignment.center,
+                                                    child: Text(
+                                                      'Share Note',
+                                                      style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          fontSize: 20),
+                                                    ),
+                                                  )),
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      Navigator.pop(context);
+                                                    },
+                                                    child: Container(
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.07,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.07,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            Colors.grey.shade200,
+                                                        shape: BoxShape.circle,
+                                                      ),
+                                                      child: Center(
+                                                          child: Icon(
+                                                        Icons.close,
+                                                        size: 20,
+                                                        color: Colors.black,
+                                                      )),
+                                                    ),
+                                                  )
                                                 ],
                                               ),
-                                            ),
-                                          ],
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Custom Link (optional):',
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: Color(0xff666666)),
+                                                  )
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              TextField(
+                                                decoration: InputDecoration(
+                                                    fillColor: Colors.white,
+                                                    hintText:
+                                                        'https://pdfplex.com/note/view',
+                                                    hintStyle: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 14),
+                                                    filled: true,
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(8),
+                                                            borderSide: BorderSide(
+                                                                color: Colors.grey
+                                                                    .shade100)),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(8),
+                                                            borderSide:
+                                                                BorderSide(
+                                                                    color: Colors
+                                                                        .red))),
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              TextField(
+                                                decoration: InputDecoration(
+                                                    fillColor: Colors.white,
+                                                    hintText:
+                                                        'Add Your Custom Link',
+                                                    hintStyle: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 14),
+                                                    filled: true,
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(8),
+                                                            borderSide: BorderSide(
+                                                                color: Colors.grey
+                                                                    .shade100)),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(8),
+                                                            borderSide:
+                                                                BorderSide(
+                                                                    color: Colors
+                                                                        .red))),
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Expire Date:',
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: Color(0xff666666)),
+                                                  )
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Container(
+                                                height: MediaQuery.of(context)
+                                                    .size
+                                                    .height * 0.05,
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color:
+                                                          Colors.grey.shade100),
+                                                  color: Colors.white,
+                                                  borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(10),
+                                                    topRight: Radius.circular(10),
+                                                  ),
+                                                ),
+                                                child:
+                                                    DropdownButtonHideUnderline(
+                                                  child: DropdownButton2<String>(
+                                                    value: formats.contains(
+                                                            selectedFormat)
+                                                        ? selectedFormat
+                                                        : null,
+                                                    hint: Text(
+                                                      '1 month',
+                                                      style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    ),
+                                                    items: formats.map((format) {
+                                                      return DropdownMenuItem<
+                                                          String>(
+                                                        value: format,
+                                                        child: Text(
+                                                          format,
+                                                          style: const TextStyle(
+                                                              color: Colors.grey,
+                                                              fontWeight:
+                                                                  FontWeight.w400,
+                                                              fontSize: 13),
+                                                        ),
+                                                      );
+                                                    }).toList(),
+                                                    onChanged: (value) {
+                                                      if (value != null) {
+                                                        setState(() {
+                                                          selectedFormat = value;
+                                                        });
+                                                      }
+                                                    },
+                                                    buttonStyleData:
+                                                        ButtonStyleData(
+                                                      padding: const EdgeInsets
+                                                          .symmetric(
+                                                          horizontal: 20),
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.8,
+                                                    ),
+                                                    dropdownStyleData:
+                                                        DropdownStyleData(
+                                                      maxHeight:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.4,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.7,
+                                                      elevation: 0,
+                                                      direction:
+                                                          DropdownDirection.left,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                          bottomLeft:
+                                                              Radius.circular(10),
+                                                          bottomRight:
+                                                              Radius.circular(10),
+                                                        ),
+                                                        border: Border.all(
+                                                            color: Colors
+                                                                .grey.shade100),
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                    menuItemStyleData:
+                                                        const MenuItemStyleData(
+                                                      height: 40,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Password:',
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: Color(0xff666666)),
+                                                  )
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              TextField(
+                                                decoration: InputDecoration(
+                                                    fillColor: Colors.white,
+                                                    hintText:
+                                                    'Enter Password',
+                                                    hintStyle: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 14),
+                                                    filled: true,
+                                                    enabledBorder:
+                                                    OutlineInputBorder(
+                                                        borderRadius:
+                                                        BorderRadius
+                                                            .circular(8),
+                                                        borderSide: BorderSide(
+                                                            color: Colors.grey
+                                                                .shade100)),
+                                                    focusedBorder:
+                                                    OutlineInputBorder(
+                                                        borderRadius:
+                                                        BorderRadius
+                                                            .circular(8),
+                                                        borderSide:
+                                                        BorderSide(
+                                                            color: Colors
+                                                                .red))),
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Checkbox(
+                                                    side: BorderSide(color: Colors.grey),
+                                                    checkColor: Colors.white,
+                                                      activeColor: AppColors.primaryColor,
+                                                      value: isChecked,
+                                                      onChanged: (value){
+                                                        setState(() {
+                                                          isChecked = value!;
+                                                        });
+                                                      }
+                                                      ),
+                                                  Text('Public (listed in search)',style: TextStyle(color: Colors.grey,fontSize: 10),),
+                                                ],
+                                              ),
+                                              SizedBox(height: 10,),
+                                              Container(
+                                                height: MediaQuery.sizeOf(context).height * 0.05,
+                                                width: MediaQuery.sizeOf(context).width,
+                                                decoration: BoxDecoration(
+                                                    color: AppColors.primaryColor,
+                                                    borderRadius: BorderRadius.circular(10)),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    SizedBox(width: 10,),
+                                                    Text(
+                                                      'SHARE',
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontWeight: FontWeight.w500,
+                                                          fontSize: 16),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              SizedBox(height: 20,),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),

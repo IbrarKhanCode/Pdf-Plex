@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:pdf_plex/core/utils/colors.dart';
 import 'package:pdf_plex/sign_pdf/bottom_sheet_screen.dart';
+import 'package:pdf_plex/sign_pdf/file_ready_screen.dart';
 
 class SignatureScreen extends StatefulWidget {
   final String filePath;
@@ -47,17 +48,22 @@ class _SignatureScreenState extends State<SignatureScreen> {
                           fontWeight: FontWeight.w500),
                     ),
                     Spacer(),
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.03,
-                      width: MediaQuery.of(context).size.width * 0.15,
-                      decoration: BoxDecoration(
-                          color: AppColors.primaryColor,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Center(
-                        child: Text(
-                          'Save',
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.w500),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>FileReadyScreen()));
+                      },
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.03,
+                        width: MediaQuery.of(context).size.width * 0.15,
+                        decoration: BoxDecoration(
+                            color: AppColors.primaryColor,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Center(
+                          child: Text(
+                            'Save',
+                            style: TextStyle(
+                                color: Colors.white, fontWeight: FontWeight.w500),
+                          ),
                         ),
                       ),
                     )
