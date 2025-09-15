@@ -1,6 +1,7 @@
 import 'dart:ffi';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:pdf_plex/core/utils/colors.dart';
 import 'package:signature/signature.dart';
 
@@ -35,6 +36,8 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
   double fontsSize = 20;
   int selectedIndex = 0;
   String enteredText = '';
+  Color selectedColor = Colors.blue;
+  static const double thumbRadius = 12.0;
 
   @override
   void initState() {
@@ -191,14 +194,14 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                           color: Colors.grey.shade100,
-                          borderRadius: BorderRadius.circular(15)
+                          borderRadius: BorderRadius.circular(15),
                         ),
                         child: Center(
                           child: Text(
                             enteredText.isEmpty ?
                             'Preview' : enteredText,
                             style: TextStyle(
-                                color: Colors.black,fontSize: fontsSize,
+                                color: selectedColor,fontSize: fontsSize,
                                 fontFamily: fonts[selectedIndex2],fontWeight: FontWeight.w500,),
                           ),
                         ),
@@ -246,29 +249,106 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
                   SizedBox(height: 20,),
                   Row(
                     children: [
-                      Container(
-                        height: MediaQuery.of(context).size.width * 0.05,
-                        width: MediaQuery.of(context).size.width * 0.05,
-                      ),
                       SizedBox(width: 20,),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        child: Slider(
-                          max: 70,
-                            min: 10,
-                            divisions: 60,
-                            activeColor: AppColors.primaryColor,
-                            label: fontsSize.round().toString(),
-                            value: fontsSize,
-                            onChanged: (value){
-                             setState(() {
-                               fontsSize = value;
-                             });
-                            }
-                            ),
+                      GestureDetector(
+                        onTap: (){
+                          showDialog(
+                              context: context,
+                              builder: (context){
+                                return Dialog(
+                                  backgroundColor: Colors.white,
+                                  child: SingleChildScrollView(
+                                    child: SizedBox(
+                                      height: MediaQuery.of(context).size.height * 0.7,
+                                      width: MediaQuery.of(context).size.width,
+                                      child: Column(
+                                        children: [
+                                          SizedBox(height: 20,),
+                                          Text('Pick a Color',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500,fontSize: 20),),
+                                          SizedBox(height: 20,),
+                                          ColorPicker(
+                                              pickerColor: selectedColor,
+                                              onColorChanged: (color){
+                                                setState(() {
+                                                  selectedColor = color;
+                                                });
+                                              },
+                                              pickerAreaHeightPercent: 1
+                                          ),
+                                          SizedBox(height: 20,),
+                                          GestureDetector(
+                                            onTap: (){
+                                              Navigator.pop(context);
+                                            },
+                                            child: Container(
+                                              height: MediaQuery.of(context).size.height * 0.05,
+                                              width: MediaQuery.of(context).size.width * 0.7,
+                                              decoration: BoxDecoration(
+                                                  color: AppColors.primaryColor,
+                                                  borderRadius: BorderRadius.circular(10)
+                                              ),
+                                              child: Center(child: Text('Save',style: TextStyle(
+                                                  color: Colors.white,fontWeight: FontWeight.w500
+                                              ),),),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              });
+                        },
+                        child: Container(
+                          height: MediaQuery.of(context).size.width * 0.08,
+                          width: MediaQuery.of(context).size.width * 0.08,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage('assets/images/color_picker.png')),
+                          ),
+                        ),
                       ),
+                      SizedBox(width: 10,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: thumbRadius),
+                            child: Text('Size',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500),),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            child: SliderTheme(
+
+                              data: SliderTheme.of(context).copyWith(
+                                thumbShape:
+                                const RoundSliderThumbShape(enabledThumbRadius: thumbRadius),
+                                overlayShape: const RoundSliderOverlayShape(overlayRadius: 0),
+                                trackShape: RectangularSliderTrackShape(),
+                                trackHeight: 5,
+                              ),
+                              child: Slider(
+                                  max: 70,
+                                  min: 10,
+                                  divisions: 60,
+                                  activeColor: AppColors.primaryColor,
+                                  label: fontsSize.round().toString(),
+                                  value: fontsSize,
+                                  onChanged: (value){
+                                    setState(() {
+                                      fontsSize = value;
+                                    });
+                                  }
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+
                     ],
-                  )
+                  ),
+
                 ],
               ),
             )
@@ -331,7 +411,7 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
                         backgroundColor: Colors.transparent,
                         height: MediaQuery.of(context).size.height * 0.6,
                         width: MediaQuery.of(context).size.width * 0.9,
-                      )
+                      ),
                     ],
                   )
             )),
